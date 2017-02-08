@@ -8,11 +8,11 @@ using System.Numerics;
 using System.Linq;
 using NUnit.Framework;
 using Newtonsoft.Json;
-using GlmSharp;
+using Atma;
 
 // ReSharper disable InconsistentNaming
 
-namespace GlmSharpTest.Generated.Mat3x2
+namespace  Atma.Generated.Mat3x2
 {
     [TestFixture]
     public class UintMat3x2Test

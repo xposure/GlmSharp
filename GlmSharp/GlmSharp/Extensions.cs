@@ -5,8 +5,8 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GlmSharp
-{
+//namespace GlmSharp
+//{
     internal static class Extensions
     {
         public static double LengthSqr(this Complex c)
@@ -385,4 +385,4 @@ namespace GlmSharp
             }
         }
     }
-}
+//}

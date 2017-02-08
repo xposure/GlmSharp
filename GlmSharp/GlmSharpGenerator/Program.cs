@@ -13,6 +13,7 @@ namespace GlmSharpGenerator
 {
     class Program
     {
+        public static string Namespace = "Atma";
 
         private static void Main(string[] args)
         {
@@ -22,6 +23,7 @@ namespace GlmSharpGenerator
             if (args.Length != 1)
             {
                 Console.WriteLine("Usage: path/to/sln-folder/ path/to/gen-folder/");
+                //Console.Read();
                 return;
             }
 
@@ -57,6 +59,7 @@ namespace GlmSharpGenerator
 
                 foreach (var type in AbstractType.Types.Values)
                 {
+                    //Console.WriteLine("Processing " + type.NameTha);
                     // generate lib code
                     {
                         var filename = type.PathOf(path);
@@ -79,8 +82,10 @@ namespace GlmSharpGenerator
                         if (type.TestFile.WriteToFileIfChanged(filename))
                             Console.WriteLine("    CHANGED " + filename);
                     }
+
                 }
             }
+            Console.Read();
         }
     }
 }

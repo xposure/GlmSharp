@@ -816,6 +816,17 @@ namespace GlmSharpGenerator.Types
                     CodeString = "(" + Name + ")(dvec2.FromAngle(Angle + angleInRad) * (double)Length)",
                     Comment = "Returns a 2D vector that was rotated by a given angle in radians (CAUTION: result is casted and may be truncated)."
                 };
+
+            }
+
+            // perpendicular 2d
+            if (Components == 2 && BaseType.IsFloatingPoint)
+            {
+                yield return new Property("Perpendicular", this)
+                {
+                    GetterLine = $"new {Name}(y, -x)",
+                    Comment = "Returns a perpendicular vector."
+                };
             }
 
             // Complex properties

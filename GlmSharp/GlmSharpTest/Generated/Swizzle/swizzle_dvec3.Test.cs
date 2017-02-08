@@ -8,11 +8,11 @@ using System.Numerics;
 using System.Linq;
 using NUnit.Framework;
 using Newtonsoft.Json;
-using GlmSharp;
+using Atma.Swizzle;
 
 // ReSharper disable InconsistentNaming
 
-namespace GlmSharpTest.Generated.Swizzle
+namespace  Atma.Swizzle.Generated.Swizzle
 {
     [TestFixture]
     public class DoubleSwizzleVec3Test

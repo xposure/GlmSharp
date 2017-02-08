@@ -10,8 +10,8 @@ namespace System.Runtime.CompilerServices
     public class ExtensionAttribute : Attribute { }
 }
 
-namespace GlmSharp
-{
+//namespace GlmSharp
+//{
 
     internal static class Extensions
     {
@@ -387,4 +387,4 @@ namespace GlmSharp
             }
         }
     }
-}
+//}

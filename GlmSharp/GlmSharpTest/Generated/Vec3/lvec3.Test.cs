@@ -8,11 +8,11 @@ using System.Numerics;
 using System.Linq;
 using NUnit.Framework;
 using Newtonsoft.Json;
-using GlmSharp;
+using Atma;
 
 // ReSharper disable InconsistentNaming
 
-namespace GlmSharpTest.Generated.Vec3
+namespace  Atma.Generated.Vec3
 {
     [TestFixture]
     public class LongVec3Test

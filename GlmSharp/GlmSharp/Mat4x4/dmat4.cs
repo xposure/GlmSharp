@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Numerics;
 using System.Linq;
-using GlmSharp.Swizzle;
+using Atma.Swizzle;
 
 // ReSharper disable InconsistentNaming
 
-namespace GlmSharp
+namespace Atma
 {
     
     /// <summary>
@@ -1052,6 +1052,16 @@ namespace GlmSharp
         /// Executes a matrix-matrix-multiplication dmat4 * dmat4 -> dmat4.
         /// </summary>
         public static dmat4 operator*(dmat4 lhs, dmat4 rhs) => new dmat4(((lhs.m00 * rhs.m00 + lhs.m10 * rhs.m01) + (lhs.m20 * rhs.m02 + lhs.m30 * rhs.m03)), ((lhs.m01 * rhs.m00 + lhs.m11 * rhs.m01) + (lhs.m21 * rhs.m02 + lhs.m31 * rhs.m03)), ((lhs.m02 * rhs.m00 + lhs.m12 * rhs.m01) + (lhs.m22 * rhs.m02 + lhs.m32 * rhs.m03)), ((lhs.m03 * rhs.m00 + lhs.m13 * rhs.m01) + (lhs.m23 * rhs.m02 + lhs.m33 * rhs.m03)), ((lhs.m00 * rhs.m10 + lhs.m10 * rhs.m11) + (lhs.m20 * rhs.m12 + lhs.m30 * rhs.m13)), ((lhs.m01 * rhs.m10 + lhs.m11 * rhs.m11) + (lhs.m21 * rhs.m12 + lhs.m31 * rhs.m13)), ((lhs.m02 * rhs.m10 + lhs.m12 * rhs.m11) + (lhs.m22 * rhs.m12 + lhs.m32 * rhs.m13)), ((lhs.m03 * rhs.m10 + lhs.m13 * rhs.m11) + (lhs.m23 * rhs.m12 + lhs.m33 * rhs.m13)), ((lhs.m00 * rhs.m20 + lhs.m10 * rhs.m21) + (lhs.m20 * rhs.m22 + lhs.m30 * rhs.m23)), ((lhs.m01 * rhs.m20 + lhs.m11 * rhs.m21) + (lhs.m21 * rhs.m22 + lhs.m31 * rhs.m23)), ((lhs.m02 * rhs.m20 + lhs.m12 * rhs.m21) + (lhs.m22 * rhs.m22 + lhs.m32 * rhs.m23)), ((lhs.m03 * rhs.m20 + lhs.m13 * rhs.m21) + (lhs.m23 * rhs.m22 + lhs.m33 * rhs.m23)), ((lhs.m00 * rhs.m30 + lhs.m10 * rhs.m31) + (lhs.m20 * rhs.m32 + lhs.m30 * rhs.m33)), ((lhs.m01 * rhs.m30 + lhs.m11 * rhs.m31) + (lhs.m21 * rhs.m32 + lhs.m31 * rhs.m33)), ((lhs.m02 * rhs.m30 + lhs.m12 * rhs.m31) + (lhs.m22 * rhs.m32 + lhs.m32 * rhs.m33)), ((lhs.m03 * rhs.m30 + lhs.m13 * rhs.m31) + (lhs.m23 * rhs.m32 + lhs.m33 * rhs.m33)));
+        
+        /// <summary>
+        /// Executes a matrix-vector-multiplication.
+        /// </summary>
+        public static dvec2 operator*(dmat4 m, dvec2 v) => new dvec2(((m.m00 * v.x + m.m10 * v.y) + m.m30), ((m.m01 * v.x + m.m11 * v.y) + m.m31));
+        
+        /// <summary>
+        /// Executes a matrix-vector-multiplication.
+        /// </summary>
+        public static dvec3 operator*(dmat4 m, dvec3 v) => new dvec3(((m.m00 * v.x + m.m10 * v.y) + (m.m20 * v.z + m.m30)), ((m.m01 * v.x + m.m11 * v.y) + (m.m21 * v.z + m.m31)), ((m.m02 * v.x + m.m12 * v.y) + (m.m22 * v.z + m.m32)));
         
         /// <summary>
         /// Executes a matrix-vector-multiplication.

@@ -148,6 +148,12 @@ namespace GlmSharpGenerator
                 yield return f(i);
         }
 
+        public static IEnumerable<T> ForEach<T>(this int[] n, Func<int, T> f)
+        {
+            for (var i = 0; i < n.Length; i++)
+                yield return f(n[i]);
+        }
+
         // http://www.johndcook.com/blog/csharp_poisson/
         public static int GetPoisson(this double lambda, Random random)
         {

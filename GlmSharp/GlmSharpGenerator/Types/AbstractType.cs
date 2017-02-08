@@ -67,7 +67,7 @@ namespace GlmSharpGenerator.Types
         /// <summary>
         /// Namespace of this type
         /// </summary>
-        public virtual string Namespace { get; } = "GlmSharp";
+        public virtual string Namespace { get; } = Program.Namespace;
 
         /// <summary>
         /// Additional arg for data contracts
@@ -190,11 +190,11 @@ namespace GlmSharpGenerator.Types
                 }
                 yield return "using NUnit.Framework;";
                 yield return "using Newtonsoft.Json;";
-                yield return "using GlmSharp;";
+                yield return "using " + Namespace + ";";
                 yield return "";
                 yield return "// ReSharper disable InconsistentNaming";
                 yield return "";
-                yield return "namespace GlmSharpTest.Generated." + Folder;
+                yield return "namespace  " + Namespace + ".Generated." + Folder;
                 yield return "{";
                 yield return "    [TestFixture]";
                 yield return "    public class " + TestClassName;
@@ -233,7 +233,7 @@ namespace GlmSharpGenerator.Types
                     yield return "using System.Numerics;";
                     yield return "using System.Linq;";
                 }
-                yield return "using GlmSharp.Swizzle;";
+                yield return "using " + Program.Namespace + ".Swizzle;";
                 yield return "";
                 yield return "// ReSharper disable InconsistentNaming";
                 yield return "";
@@ -269,7 +269,7 @@ namespace GlmSharpGenerator.Types
                     yield return "using System.Numerics;";
                     yield return "using System.Linq;";
                 }
-                yield return "using GlmSharp.Swizzle;";
+                yield return "using " + Program.Namespace + ".Swizzle;";
                 yield return "";
                 yield return "// ReSharper disable InconsistentNaming";
                 yield return "";

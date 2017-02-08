@@ -62,5 +62,11 @@ namespace GlmSharpGenerator.Members
         /// Returns an enumeration of members used for the "glm" class
         /// </summary>
         public virtual IEnumerable<Member> GlmMembers() { yield break; }
+
+
+        public override string ToString()
+        {
+            return Comment;
+        }
     }
 }

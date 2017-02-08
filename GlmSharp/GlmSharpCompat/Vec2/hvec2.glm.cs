@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
-using GlmSharp.Swizzle;
+using Atma.Swizzle;
 
 // ReSharper disable InconsistentNaming
 
-namespace GlmSharp
+namespace Atma
 {
     /// <summary>
     /// Static class that contains static glm functions
@@ -450,6 +450,11 @@ namespace GlmSharp
         /// Returns a 2D vector that was rotated by a given angle in radians (CAUTION: result is casted and may be truncated).
         /// </summary>
         public static hvec2 Rotated(hvec2 v, double angleInRad) => v.Rotated(angleInRad);
+        
+        /// <summary>
+        /// Returns a perpendicular vector.
+        /// </summary>
+        public static hvec2 Perpendicular(hvec2 v) => v.Perpendicular;
         
         /// <summary>
         /// Returns the inner product (dot product, scalar product) of the two vectors.

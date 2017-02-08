@@ -10,7 +10,7 @@ namespace GlmSharpGenerator.Types
 
         public override string Name => BaseName + Components;
 
-        public override string Namespace { get; } = "GlmSharp.Swizzle";
+        public override string Namespace { get; } = Program.Namespace + ".Swizzle";
 
         public override string Folder => "Swizzle";
         public override string DataContractArg { get; } = "(Namespace = \"swizzle\")";

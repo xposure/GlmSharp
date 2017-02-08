@@ -305,5 +305,10 @@ namespace GlmSharpGenerator.Types
 
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format($"{{ Type: {Name} }}");
+        }
     }
 }

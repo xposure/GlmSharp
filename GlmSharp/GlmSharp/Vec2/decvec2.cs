@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Numerics;
 using System.Linq;
-using GlmSharp.Swizzle;
+using Atma.Swizzle;
 
 // ReSharper disable InconsistentNaming
 
-namespace GlmSharp
+namespace Atma
 {
     
     /// <summary>
@@ -450,6 +450,11 @@ namespace GlmSharp
         /// Returns the vector angle (atan2(y, x)) in radians.
         /// </summary>
         public double Angle => Math.Atan2((double)y, (double)x);
+        
+        /// <summary>
+        /// Returns a perpendicular vector.
+        /// </summary>
+        public decvec2 Perpendicular => new decvec2(y, -x);
 
         #endregion
 

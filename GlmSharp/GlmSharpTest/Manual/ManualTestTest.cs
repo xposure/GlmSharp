@@ -4,11 +4,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using GlmSharp;
+//using GlmSharp;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GlmSharpTest.Manual
+namespace Atma.Manual
 {
     [TestFixture]
     public class ManualTestTest

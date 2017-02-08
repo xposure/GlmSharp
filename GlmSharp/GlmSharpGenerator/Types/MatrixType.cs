@@ -109,7 +109,7 @@ namespace GlmSharpGenerator.Types
                 yield return "m" + x + row;
         }
 
-        public string FieldFor(int f) => $"m{f/Rows}{f%Rows}";
+        public string FieldFor(int f) => $"m{f / Rows}{f % Rows}";
 
         public string ArgOf(int c) => "xyzw"[c].ToString();
 
@@ -219,7 +219,7 @@ namespace GlmSharpGenerator.Types
                 yield return new Property("Column" + col, colVecType)
                 {
                     GetterLine = $"return {Construct(colVecType, Column(col))};",
-                    Setter = Column(col).Select((f,i) => $"{f} = value.{ArgOf(i)};"),
+                    Setter = Column(col).Select((f, i) => $"{f} = value.{ArgOf(i)};"),
                     Comment = $"Gets or sets the column nr {col}"
                 };
             // Rows
@@ -227,7 +227,7 @@ namespace GlmSharpGenerator.Types
                 yield return new Property("Row" + row, rowVecType)
                 {
                     GetterLine = $"return {Construct(rowVecType, Row(row))};",
-                    Setter = Row(row).Select((f,i) => $"{f} = value.{ArgOf(i)};"),
+                    Setter = Row(row).Select((f, i) => $"{f} = value.{ArgOf(i)};"),
                     Comment = $"Gets or sets the row nr {row}"
                 };
 
@@ -526,10 +526,24 @@ namespace GlmSharpGenerator.Types
                             FieldsHelper(rhsColumns, lhsRows).Select(f => lhsCols.ForIndexUpTo(i => string.Format("lhs.m{1}{2} * rhs.m{0}{1}", f[1], i, f[2])).Aggregated(" + ")).CommaSeparated());
                     }
 
+                    if (Columns == 4 && Rows == 4)
+                    {
+                        var cols = new int[] { 0, 1, 3 };
+                        foreach (var line in "Executes a matrix-vector-multiplication.".AsComment()) yield return line;
+                        yield return string.Format("public static {0} operator*({1} m, {2} v) => new {0}({3});", BaseType.Prefix + "vec" + 2, NameThat, BaseType.Prefix + "vec" + 2,
+                            2.ForIndexUpTo(r => cols.ForEach(c => c < 2 ? "m.m" + c + r + " * v." + "xyzw"[c] : "m.m" + c + r).Aggregated(" + ")).CommaSeparated());
+
+                        foreach (var line in "Executes a matrix-vector-multiplication.".AsComment()) yield return line;
+                        yield return string.Format("public static {0} operator*({1} m, {2} v) => new {0}({3});", BaseType.Prefix + "vec" + 3, NameThat, BaseType.Prefix + "vec" + 3,
+                            3.ForIndexUpTo(r => Columns.ForIndexUpTo(c => c < 3 ? "m.m" + c + r + " * v." + "xyzw"[c] : "m.m" + c + r).Aggregated(" + ")).CommaSeparated());
+                    }
+
                     // matrix-vector-multiplication
                     foreach (var line in "Executes a matrix-vector-multiplication.".AsComment()) yield return line;
                     yield return string.Format("public static {0} operator*({1} m, {2} v) => new {0}({3});", BaseType.Prefix + "vec" + Rows, NameThat, BaseType.Prefix + "vec" + Columns,
                         Rows.ForIndexUpTo(r => Columns.ForIndexUpTo(c => "m.m" + c + r + " * v." + "xyzw"[c]).Aggregated(" + ")).CommaSeparated());
+
+
 
                     // matrix-matrix-division
                     if (Rows == Columns && BaseType.IsSigned)
