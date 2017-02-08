@@ -15,6 +15,18 @@ namespace GlmSharpGenerator
     {
         public static string Namespace = "Atma";
 
+        private static string FindDirInParents(string path, string dir)
+        {
+            try
+            {
+                if (!Directory.Exists(Path.Combine(path, dir)))
+                    return FindDirInParents(Path.Combine(path, "..\\"), dir);
+
+                return Path.Combine(path, dir);
+            }catch { }
+            return null;
+        }
+
         private static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
@@ -27,23 +39,23 @@ namespace GlmSharpGenerator
                 return;
             }
 
-            var basePath = args[0];
-            if (!File.Exists(Path.Combine(basePath, "GlmSharp.sln")))
+            var basePath = FindDirInParents(Environment.CurrentDirectory, "src");
+            if (string.IsNullOrEmpty(basePath))
             {
-                Console.WriteLine("File " + Path.Combine(basePath, "GlmSharp.sln") + " does not exist. Maybe wrong path?");
+                Console.WriteLine("Dir src does not exist. Maybe wrong path?");
                 return;
             }
 
             Console.WriteLine("GlmSharp Generator");
-            foreach (var version in new[] { 45, 20 })
+            foreach (var version in new[] { 45 })
             {
                 string path;
                 var testpath = "";
                 switch (version)
                 {
                     case 45:
-                        path = Path.Combine(basePath, "GlmSharp");
-                        testpath = Path.Combine(basePath, "GlmSharpTest");
+                        path = Path.Combine(basePath, "Atma\\Math\\GlmSharp");
+                        //testpath = Path.Combine(basePath, "GlmSharpTest");
                         break;
                     case 20:
                         path = Path.Combine(basePath, "GlmSharpCompat");
@@ -85,7 +97,6 @@ namespace GlmSharpGenerator
 
                 }
             }
-            Console.Read();
         }
     }
 }
