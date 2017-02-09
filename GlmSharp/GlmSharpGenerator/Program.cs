@@ -54,7 +54,7 @@ namespace GlmSharpGenerator
                 switch (version)
                 {
                     case 45:
-                        path = Path.Combine(basePath, "Atma\\Math\\GlmSharp");
+                        path = Path.Combine(basePath, "Atma.Math\\GlmSharp");
                         //testpath = Path.Combine(basePath, "GlmSharpTest");
                         break;
                     case 20:
